@@ -113,6 +113,19 @@ class Datumsberechnungen:
         ergebnis_datum = self._heute_datetime + timedelta(days=anzahl_tage)
         return self._formatiere_datum_mit_wochentag(ergebnis_datum)
 
+    def heute_minus_tage(self, anzahl_tage: int) -> str:
+        """
+        Subtrahiert Anzahl Tage vom heutigen Datum und gibt das Ergebnisdatum zurück.
+
+        Args:
+            anzahl_tage: Anzahl Tage, die vom heutigen Datum zu subtrahieren ist;
+                        sollte positiv sein.
+
+        Returns:
+            String mit Ergebnisdatum im Format DD.MM.YYYY (Wochentag), z.B. "15.01.2024 (Montag)".
+        """
+        return self.heute_plus_tage(-anzahl_tage)
+
     def set_heute_datum_for_testing(self, heute_datetime: datetime) -> None:
         """
         Mit dieser Methode kann das Datum für den heutigen Tag
