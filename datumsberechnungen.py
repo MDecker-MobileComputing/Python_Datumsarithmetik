@@ -5,7 +5,7 @@ from typing import Optional
 
 class Datumsberechnungen:
     """
-    Diese Klasse enthält Hilfsmethoden für Datumsarithmetik mit dem aktuellen Datum als Startdatum.
+    Diese Klasse enthält Methoden für Datumsarithmetik mit dem aktuellen Datum als Startdatum.
     """
 
     # Singleton-Instanz der Klasse, wird bei Bedarf in statischer Methode get_singleton_instanz() erzeugt.
@@ -42,36 +42,6 @@ class Datumsberechnungen:
             cls._singleton_instanz = cls()
 
         return cls._singleton_instanz
-
-    def get_wochentag_heute(self) -> str:
-        """
-        Methode um den Namen des heutigen Wochentages zu bekommen.
-
-        Returns:
-            Wochentag, ausgeschrieben und auf Deutsch, z.B. "Samstag"
-        """
-        # Deutsche Wochentage als Fallback, falls Locale nicht verfügbar
-        deutsche_wochentage = {
-            0: "Montag",
-            1: "Dienstag",
-            2: "Mittwoch",
-            3: "Donnerstag",
-            4: "Freitag",
-            5: "Samstag",
-            6: "Sonntag"
-        }
-
-        try:
-            # Versuche zuerst mit Locale
-            wochentag = self._heute_datetime.strftime("%A")
-            # Falls das Locale nicht auf Deutsch gesetzt werden konnte,
-            # verwende das deutsche Mapping
-            if wochentag in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]:
-                return deutsche_wochentage[self._heute_datetime.weekday()]
-            return wochentag
-        except:
-            # Fallback auf deutsches Mapping
-            return deutsche_wochentage[self._heute_datetime.weekday()]
 
     def _formatiere_datum_mit_wochentag(self, datum: datetime) -> str:
         """
