@@ -69,3 +69,41 @@ def step_datum_pruefen(context, tage, erwartetes_datum):
 
     assert berechnetes_datum_iso == erwartetes_datum, \
         f"Erwartetes Datum: {erwartetes_datum}, aber berechnet wurde: {berechnetes_datum_iso}"
+
+
+@then('ergeben sich durch Addition der folgenden Deltawerte folgende Datumswerte')
+def step_tabelle_datum_pruefen(context):
+    """
+    Prüft mehrere Delta-Werte und ihre erwarteten Ergebnisse aus einer Tabelle.
+
+    Args:
+        context: Behave context object mit context.table für die Datentabelle
+    """
+    # Prüfe, ob eine Tabelle vorhanden ist
+    assert context.table is not None, "Keine Datentabelle für den Step gefunden"
+
+    # Iteriere durch alle Zeilen der Tabelle
+    for row in context.table:
+        delta = int(row['Delta'])
+        erwartetes_ergebnis = row['Ergebnis']
+
+        # Berechne das Datum mit dem Delta-Wert
+        berechnetes_datum = context.datumsberechnungen.heute_plus_tage(delta)
+
+        # Extrahiere nur das Datum (ohne Wochentag) aus dem Format "DD.MM.YYYY (Wochentag)"
+        if '(' in berechnetes_datum:
+            datum_teil = berechnetes_datum.split('(')[0].strip()
+        else:
+            datum_teil = berechnetes_datum
+
+        # Konvertiere DD.MM.YYYY zu YYYY-MM-DD für Vergleich
+        try:
+            parsed_datum = datetime.strptime(datum_teil, '%d.%m.%Y')
+            berechnetes_datum_iso = parsed_datum.strftime('%Y-%m-%d')
+        except ValueError:
+            # Falls das Format anders ist, verwende direkt den berechneten Wert
+            berechnetes_datum_iso = berechnetes_datum
+
+        # Assertion für jede Zeile
+        assert berechnetes_datum_iso == erwartetes_ergebnis, \
+            f"Für Delta {delta}: Erwartet {erwartetes_ergebnis}, aber berechnet wurde {berechnetes_datum_iso}"

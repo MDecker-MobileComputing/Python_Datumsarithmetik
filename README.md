@@ -6,31 +6,25 @@ Dieses Repo enthält ein Python-Programm für Datumsarithmetik.
 Es wird mit [Behave](https://pypi.org/project/behave/) unter Test genommen; siehe hierzu auch
 [dieses Tutorial](https://pyquesthub.com/enhancing-test-automation-with-cucumber-in-python).
 
-## Installation
+<br>
 
-### Option 1: Globale Installation (einfach)
+----
+
+## Tests mit Behave ausführen ##
+
+<br>
+
+Installation von *Behave*:
 ```cmd
 py -m pip install behave
 ```
 
-### Option 2: Mit virtueller Umgebung (empfohlen)
-```cmd
-# Virtuelle Umgebung erstellen
-py -m venv venv
+<br>
 
-# Aktivieren (Windows)
-venv\Scripts\activate
+Tests ausführen:
 
-# Dependencies installieren
-py -m pip install -r requirements.txt
-```
-
-## Tests ausführen
 ```cmd
 behave
 ```
 
-## Programm ausführen
-```cmd
-py beispiel_berechnungen.py
-```
+<br>
