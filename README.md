@@ -8,6 +8,11 @@ Es wird mit [Behave](https://pypi.org/project/behave/) unter Test genommen; sieh
 
 <br>
 
+Siehe [hier](https://github.com/MDecker-MobileComputing/Maven_Cucumber_Datumsarithmetik) für die Java-Variante
+dieses Beispiels.
+
+<br>
+
 ----
 
 ## Tests mit Behave ausführen ##
@@ -28,3 +33,4 @@ behave
 ```
 
 <br>
+
