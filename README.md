@@ -2,8 +2,8 @@
 
 <br>
 
-Dieses Repo enthält ein Python-Programm für Datumsarithmetik.
-Es wird mit [Behave](https://pypi.org/project/behave/) unter Test genommen; siehe hierzu auch
+Dieses Repo enthält eine Python-Klasse für Datumsarithmetik,
+welche mit [Behave](https://pypi.org/project/behave/) unter Test genommen wird; siehe hierzu auch
 [dieses Tutorial](https://pyquesthub.com/enhancing-test-automation-with-cucumber-in-python).
 
 <br>
