@@ -1,3 +1,4 @@
+# Diese Datei verwendet die Gherkin-Syntax, siehe auch https://cucumber.io/docs/#what-is-gherkin
 Feature: Datumsberechnung
 
   Scenario: Morgiges Datum im selben Monat
