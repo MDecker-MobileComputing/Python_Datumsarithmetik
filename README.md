@@ -35,9 +35,30 @@ behave
 
 <br>
 
-Wenn *Behave* so nicht gefunden wird, dann kann man es mit folgendem Befehl 
+Wenn *Behave* so nicht gefunden wird (weil *Python User Scripty Directory* nicht in Umgebungsvariable `$PATH` enthalten ist), dann kann man es mit folgendem Befehl 
 ausführen:
 ```cmd
 py -m behave
 ``` 
+
+<br>
+
+----
+
+## API-Doku erzeugen ##
+
+<br>
+
+Programm [pydoc](https://pdoc.dev/) installieren:
+``` 
+py -m pip install pdoc
+```
+
+<br>
+
+API-Doku für Klasse `Datumsberechnungen` erzeugen und in Unterordner `docs` schreiben:
+
+```
+py -m pdoc datumsberechnungen.py --output-dir docs
+```
 
