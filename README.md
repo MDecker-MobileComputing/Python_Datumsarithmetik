@@ -2,9 +2,10 @@
 
 <br>
 
-Dieses Repo enthält eine Python-Klasse für Datumsarithmetik,
-welche mit [Behave](https://pypi.org/project/behave/) unter Test genommen wird; siehe hierzu auch
-[dieses Tutorial](https://pyquesthub.com/enhancing-test-automation-with-cucumber-in-python).
+Dieses Repo enthält eine Python-Klasse für Datumsarithmetik, mit der die Anzahl der Tage zwischen 
+dem aktuellen Datum und einem anderen Datum in der Zukunft oder Vergangenheit berechnet werden kann.
+Diese Klasse soll mit [Behave](https://pypi.org/project/behave/) unter Test genommen werden; 
+siehe hierzu auch [dieses Tutorial](https://pyquesthub.com/enhancing-test-automation-with-cucumber-in-python).
 
 <br>
 
