@@ -9,7 +9,7 @@ from datumsberechnungen import Datumsberechnungen
 
 
 @given('die API unter Test ist initialisiert')
-def step_api_initialisiert(context):
+def step_given_api_initialisiert(context):
     """
     Initialisiert die Datumsberechnungen API für den Test.
     """
@@ -23,7 +23,7 @@ def step_api_initialisiert(context):
 
 
 @when('das heutige Datum der {datum} ist')
-def step_datum_setzen(context, datum):
+def step_when_datum_setzen(context, datum):
     """
     Erstellt eine neue Instanz mit dem angegebenen Referenzdatum.
 
@@ -40,9 +40,9 @@ def step_datum_setzen(context, datum):
 
 
 @then('ist in {tage:d} Tagen der {erwartetes_datum}')
-def step_datum_pruefen(context, tage, erwartetes_datum):
+def step_then_datum_in_zukunft(context, tage, erwartetes_datum):
     """
-    Prüft, ob das berechnete Datum nach der angegebenen Anzahl Tage korrekt ist.
+    Prüft, ob das berechnete Datum nach Addition der angegeben Anzahl Tage korrekt ist.
 
     Args:
         context: Behave context object
@@ -71,8 +71,22 @@ def step_datum_pruefen(context, tage, erwartetes_datum):
         f"Erwartetes Datum: {erwartetes_datum}, aber berechnet wurde: {berechnetes_datum_iso}"
 
 
+@then('war vor {tage:d} Tagen der {erwartetes_datum}')
+def step_then_datum_in_vergangenheit(context, tage, erwartetes_datum):
+    """
+    Prüft, ob das berechnete Datum nach Subtraktion der angegeben Anzahl Tage korrekt ist.
+
+    Args:
+        context: Behave context object
+        tage: Anzahl Tage als Integer
+        erwartetes_datum: Erwartetes Datum im Format YYYY-MM-DD
+    """
+    # Negiere die Anzahl Tage und verwende die bestehende Zukunftsfunktion
+    step_then_datum_in_zukunft(context, -tage, erwartetes_datum)
+
+
 @then('ergeben sich durch Addition der folgenden Deltawerte folgende Datumswerte')
-def step_tabelle_datum_pruefen(context):
+def step_then_abelle_datum_pruefen(context):
     """
     Prüft mehrere Delta-Werte und ihre erwarteten Ergebnisse aus einer Tabelle.
 

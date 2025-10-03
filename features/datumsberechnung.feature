@@ -1,4 +1,5 @@
-# Diese Datei verwendet die Gherkin-Syntax, siehe auch https://cucumber.io/docs/#what-is-gherkin
+
+# Diese Datei verwendet die Gherkin-Syntax
 Feature: Datumsberechnung
 
   Scenario: Morgiges Datum im selben Monat
@@ -11,10 +12,11 @@ Feature: Datumsberechnung
      When das heutige Datum der 2025-10-25 ist
      Then ist in 1 Tagen der 2025-10-26
 
-  Scenario: Morgiges Datum im nächsten Monat
+  Scenario: Datum in Zukunft/Vergangenheit in anderem Monat
     Given die API unter Test ist initialisiert
-     When das heutige Datum der 2025-10-31 ist
-     Then ist in 1 Tagen der 2025-11-01
+     When das heutige Datum der 2025-10-15 ist
+     Then ist in 20 Tagen der 2025-11-04
+     Then war vor 20 Tagen der 2025-09-25
 
   Scenario: Morgiges Datum im nächsten Jahr
     Given die API unter Test ist initialisiert
