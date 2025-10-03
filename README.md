@@ -62,3 +62,9 @@ API-Doku für Klasse `Datumsberechnungen` erzeugen und in Unterordner `docs` sch
 py -m pdoc datumsberechnungen.py --output-dir docs
 ```
 
+<br>
+
+Die so erzeugte API-Doku wird mit *GitHub Pages* unter [dieser URL](https://mdecker-mobilecomputing.github.io/Python_Datumsarithmetik/datumsberechnungen.html)
+Bereitgestellt.
+
+<br>
