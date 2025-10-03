@@ -49,7 +49,7 @@ py -m behave
 
 <br>
 
-Programm [pydoc](https://pdoc.dev/) installieren:
+Programm [pdoc](https://pdoc.dev/) installieren:
 ``` 
 py -m pip install pdoc
 ```
@@ -65,6 +65,6 @@ py -m pdoc datumsberechnungen.py --output-dir docs
 <br>
 
 Die so erzeugte API-Doku wird mit *GitHub Pages* unter [dieser URL](https://mdecker-mobilecomputing.github.io/Python_Datumsarithmetik/datumsberechnungen.html)
-Bereitgestellt.
+bereitgestellt.
 
 <br>
