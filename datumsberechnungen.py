@@ -5,19 +5,26 @@ from typing import Optional
 
 class Datumsberechnungen:
     """
-    Diese Klasse enthält Methoden für Datumsarithmetik mit dem aktuellen Datum als Startdatum.
+    Diese Klasse enthält Methoden für Datumsarithmetik mit einem Referenzdatum als Startdatum.
     """
 
-    # Singleton-Instanz der Klasse, wird bei Bedarf in statischer Methode get_singleton_instanz() erzeugt.
-    _singleton_instanz: Optional['Datumsberechnungen'] = None
-
-    def __init__(self):
+    def __init__(self, referenz_datum: Optional[str] = None):
         """
-        Privater Dummy-Konstruktor um zu verhindern, dass ein Objekt
-        dieser Klasse von einer anderen Klasse erzeugt wird.
+        Konstruktor für Datumsberechnungen.
+        
+        Args:
+            referenz_datum: Referenzdatum im ISO-Format (YYYY-MM-DD). 
+                          Falls None, wird das aktuelle Datum verwendet.
         """
-        # Heutiges Datum; kann mit Methode set_heute_datum_for_testing(datetime) geändert werden.
-        self._heute_datetime = datetime.now()
+        if referenz_datum is None:
+            # Aktuelles Datum verwenden
+            self._heute_datetime = datetime.now()
+        else:
+            # Referenzdatum aus ISO-String parsen (str: string parse time)
+            try:
+                self._heute_datetime = datetime.strptime(referenz_datum, '%Y-%m-%d')
+            except ValueError as e:
+                raise ValueError(f"Ungültiges Datumsformat '{referenz_datum}'. Erwartet: YYYY-MM-DD") from e
 
         # Locale auf Deutsch setzen (falls verfügbar)
         try:
@@ -28,20 +35,6 @@ class Datumsberechnungen:
             except locale.Error:
                 # Fallback: Englisch verwenden
                 pass
-
-    @classmethod
-    def get_singleton_instanz(cls) -> 'Datumsberechnungen':
-        """
-        Methode liefert Singleton-Instanz der Klasse zurück;
-        Singleton-Objekt wird ggf. erzeugt.
-
-        Returns:
-            Singleton-Instanz
-        """
-        if cls._singleton_instanz is None:
-            cls._singleton_instanz = cls()
-
-        return cls._singleton_instanz
 
     def _formatiere_datum_mit_wochentag(self, datum: datetime) -> str:
         """
@@ -95,13 +88,3 @@ class Datumsberechnungen:
             String mit Ergebnisdatum im Format DD.MM.YYYY (Wochentag), z.B. "15.01.2024 (Montag)".
         """
         return self.heute_plus_tage(-anzahl_tage)
-
-    def set_heute_datum_for_testing(self, heute_datetime: datetime) -> None:
-        """
-        Mit dieser Methode kann das Datum für den heutigen Tag
-        für Testzwecke kontrolliert (geändert) werden.
-
-        Args:
-            heute_datetime: Neues Datum für "Heute"
-        """
-        self._heute_datetime = heute_datetime

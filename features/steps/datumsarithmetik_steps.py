@@ -15,7 +15,8 @@ def step_api_initialisiert(context):
     """
 
     # Das Kontext-Objekt wird von Behave bereitgestellt
-    context.datumsberechnungen = Datumsberechnungen.get_singleton_instanz()
+    # Verwende den neuen Konstruktor ohne Parameter (aktuelles Datum)
+    context.datumsberechnungen = Datumsberechnungen()
 
     # Sicherstellen, dass die API verfügbar ist
     assert context.datumsberechnungen is not None, "API konnte nicht initialisiert werden"
@@ -24,16 +25,15 @@ def step_api_initialisiert(context):
 @when('das heutige Datum der {datum} ist')
 def step_datum_setzen(context, datum):
     """
-    Setzt das heutige Datum für den Test auf den angegebenen Wert.
+    Erstellt eine neue Instanz mit dem angegebenen Referenzdatum.
 
     Args:
         context: Behave context object
         datum: Datum im Format YYYY-MM-DD, z.B. "2025-10-15"
     """
-    # Parse das Datum im Format YYYY-MM-DD
+    # Erstelle eine neue Instanz mit dem spezifizierten Referenzdatum
     try:
-        test_datum = datetime.strptime(datum, '%Y-%m-%d')
-        context.datumsberechnungen.set_heute_datum_for_testing(test_datum)
+        context.datumsberechnungen = Datumsberechnungen(datum)
         context.test_datum = datum  # Speichere für später
     except ValueError as e:
         raise ValueError(f"Ungültiges Datumsformat '{datum}'. Erwartet: YYYY-MM-DD") from e
