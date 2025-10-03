@@ -35,3 +35,9 @@ behave
 
 <br>
 
+Wenn *Behave* so nicht gefunden wird, dann kann man es mit folgendem Befehl 
+ausführen:
+```cmd
+py -m behave
+``` 
+
