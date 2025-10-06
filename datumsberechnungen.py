@@ -10,10 +10,10 @@ class Datumsberechnungen:
 
     def __init__(self, referenz_datum: Optional[str] = None):
         """
-        Konstruktor für Datumsberechnungen.
-        
+        Initialisierer für Datumsberechnungen.
+
         Args:
-            referenz_datum: Referenzdatum im ISO-Format (YYYY-MM-DD). 
+            referenz_datum: Referenzdatum im ISO-Format (YYYY-MM-DD).
                           Falls None, wird das aktuelle Datum verwendet.
         """
         if referenz_datum is None:
